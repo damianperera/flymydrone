@@ -3,17 +3,17 @@
   "name": "Fly My Drone in the EU",
   "icons": [
     {
-      "src": "https://images.tovisit.eu/flymydrone/logo/png/logo-no-background.png",
+      "src": "https://images.tovisit.eu/flymydrone/logo/png/logo-only.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "https://images.tovisit.eu/flymydrone/logo/png/logo-no-background.png",
+      "src": "https://images.tovisit.eu/flymydrone/logo/png/logo-only.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "https://images.tovisit.eu/flymydrone/logo/png/logo-no-background.png",
+      "src": "https://images.tovisit.eu/flymydrone/logo/png/logo-only.png",
       "type": "image/png",
       "sizes": "512x512"
     }
