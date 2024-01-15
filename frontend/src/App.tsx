@@ -1,14 +1,13 @@
-import * as React from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
-import { AppBar, DroneMap } from './components'
+import { AppBar, DroneMap, FullScreenLoader } from './components'
 import { LocationContext, CurrentLocationContextType } from './common'
-import { Backdrop, CircularProgress } from '@mui/material'
 
 function App() {
-  const [location, setLocation] = React.useState<CurrentLocationContextType | null>(null)
-  const [loading, setLoading] = React.useState(true)
+  const [location, setLocation] = useState<CurrentLocationContextType | null>(null)
+  const [loading, setLoading] = useState(true)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getUserLocation = () => {
       const options: PositionOptions = {
         timeout: 300000,
@@ -47,12 +46,7 @@ function App() {
 
   if (loading) {
     return (
-      <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={true}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
+      <FullScreenLoader />
     )
   }
 
