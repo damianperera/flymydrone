@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import { AppBar, DroneMap, FullScreenLoader } from './components'
-import { LocationContext, CurrentLocationContextType } from './common'
+import { LocationContext, CurrentLocationContextType, transformForecastData } from './common'
 
 function App() {
   const [location, setLocation] = useState<CurrentLocationContextType | null>(null)
@@ -20,8 +20,7 @@ function App() {
           (position) => {
             console.debug('Fetching position')
             const { longitude, latitude } = position.coords
-            setLocation({ longitude, latitude, country: '' })
-            setLoading(false)
+            fetchForecastData(latitude, longitude)
           },
           (error) => {
             console.error('Error getting user location:', error)
@@ -34,6 +33,18 @@ function App() {
         setLoading(false)
       }
     }
+
+    const fetchForecastData = async (latitude: number, longitude: number) => {
+      try {
+        console.debug("Fetching forecast data")
+        const response = await fetch(`https://api.airdata.com/forecast/latitude=${latitude}&longitude=${longitude}`);
+        const data = await response.json();
+        setLocation(transformForecastData(latitude, longitude, data))
+        setLoading(false)
+      } catch (error) {
+        console.error('Error fetching forecast data:', error);
+      }
+    };
 
     getUserLocation()
   }, [])
